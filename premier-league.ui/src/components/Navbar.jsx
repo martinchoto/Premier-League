@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo Section */}
         <div className="navbar-logo">
           <img src="./src/assets/pl_logo.svg" alt="Premier League Logo" />
           <span className="logo-text">
@@ -15,12 +15,10 @@ const Navbar = () => {
 
         <ul className="nav-links">
           <li>
-            <a href="#home" className="active">
-              Home
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#standings">Standings</a>
+            <Link to="/standings">Standings</Link>
           </li>
           <li>
             <a href="#fixtures">Fixtures</a>

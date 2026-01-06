@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -14,7 +15,9 @@ const Home = () => {
             goal, every card, and every win.
           </p>
           <div className="hero-btns">
-            <button className="btn-primary">View Standings</button>
+            <Link to="/standings" className="btn-primary">
+              View Standings
+            </Link>
             <button className="btn-secondary">Latest Fixtures</button>
           </div>
         </div>

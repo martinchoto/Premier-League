@@ -49,6 +49,7 @@
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-secondary {
@@ -59,6 +60,7 @@
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .features {
