@@ -1,5 +1,7 @@
-/secrets.properties
+# Hide API keys and sensitive files
 
+/src/main/resources/secrets.properties
+# Ignore IDE files
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
