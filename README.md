@@ -1,2 +1,3 @@
 # Premier-League
-Fun Project to watch your favorite teams in England, built on react and java 
+Self-hosted web app that tracks the Premier League with standings, fixtures and more...
+Need to enable the react server with npm run dev and the backend with ./mvnw spring-boot:run
