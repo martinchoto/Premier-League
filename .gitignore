@@ -416,3 +416,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+premier-league.api/src/main/resources/secrets.properties
