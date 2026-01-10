@@ -1,3 +1,4 @@
 # Premier-League
 Self-hosted web app that tracks the Premier League with standings, fixtures and more...
-Need to enable the react server with npm run dev and the backend with ./mvnw spring-boot:run
+You need to enable the server API with ./mvnw spring-boot:run then open the UI folder and run $ npm run dev
+Will add more instructions later..
