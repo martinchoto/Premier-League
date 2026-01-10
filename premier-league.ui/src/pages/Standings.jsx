@@ -1,64 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Standings.css";
 
 const Standings = () => {
-  const decemberData = [
-    {
-      rank: 1,
-      team: "Liverpool",
-      p: 18,
-      w: 13,
-      d: 4,
-      l: 1,
-      gd: 24,
-      pts: 43,
-      form: ["W", "W", "D", "W", "W"],
-    },
-    {
-      rank: 2,
-      team: "Arsenal",
-      p: 18,
-      w: 12,
-      d: 4,
-      l: 2,
-      gd: 20,
-      pts: 40,
-      form: ["L", "W", "W", "D", "W"],
-    },
-    {
-      rank: 3,
-      team: "Manchester City",
-      p: 18,
-      w: 11,
-      d: 5,
-      l: 2,
-      gd: 22,
-      pts: 38,
-      form: ["W", "D", "W", "W", "L"],
-    },
-    {
-      rank: 4,
-      team: "Aston Villa",
-      p: 19,
-      w: 11,
-      d: 3,
-      l: 5,
-      gd: 11,
-      pts: 36,
-      form: ["W", "W", "L", "W", "D"],
-    },
-    {
-      rank: 5,
-      team: "Tottenham",
-      p: 19,
-      w: 10,
-      d: 3,
-      l: 6,
-      gd: 9,
-      pts: 33,
-      form: ["L", "L", "W", "D", "W"],
-    },
-  ];
+  const [standings, setStandings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/standings")
+      .then((response) => response.json())
+      .then((data) => {
+        setStandings(data.standings[0].table);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching standings:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading standings...</p>;
 
   return (
     <div className="standings-view">
@@ -85,29 +45,37 @@ const Standings = () => {
             </tr>
           </thead>
           <tbody>
-            {decemberData.map((club) => (
-              <tr key={club.rank} className={`table-row row-rank-${club.rank}`}>
+            {standings.map((club) => (
+              <tr key={club.team.id} className="table-row">
                 <td className="rank-cell">
-                  <span className="rank-number">{club.rank}</span>
+                  <span className="rank-number">{club.position}</span>
                 </td>
                 <td className="team-cell">
                   <div className="team-info">
-                    {/* Using the path relative to the public folder or absolute asset path */}
-                    <img src="/pl_table.svg" alt="" className="club-icon" />
-                    <span className="club-name">{club.team}</span>
+                    <img
+                      src={club.team.crest} // FIXED: Added .team
+                      alt={club.team.name}
+                      className="club-icon"
+                    />
+                    <span className="club-name">
+                      {club.team.shortName || club.team.name}
+                    </span>
                   </div>
                 </td>
-                <td className="stat-cell">{club.p}</td>
-                <td className="stat-cell">{club.w}</td>
-                <td className="stat-cell">{club.d}</td>
-                <td className="stat-cell">{club.l}</td>
+                <td className="stat-cell">{club.playedGames}</td>
+                <td className="stat-cell">{club.won}</td>
+                <td className="stat-cell">{club.draw}</td>
+                <td className="stat-cell">{club.lost}</td>
                 <td className="stat-cell gd-cell">
-                  {club.gd > 0 ? `+${club.gd}` : club.gd}
+                  {club.goalDifference > 0
+                    ? `+${club.goalDifference}`
+                    : club.goalDifference}
                 </td>
-                <td className="pts-cell">{club.pts}</td>
+                <td className="pts-cell">{club.points}</td>
                 <td className="form-cell">
                   <div className="form-indicator-group">
-                    {club.form.map((res, i) => (
+                    {/* FIXED: Convert "W,D,L" string to array before mapping */}
+                    {club.form?.split(",").map((res, i) => (
                       <span key={i} className={`form-dot ${res.toLowerCase()}`}>
                         {res}
                       </span>
