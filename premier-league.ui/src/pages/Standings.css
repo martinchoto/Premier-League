@@ -41,13 +41,13 @@
   margin-top: 5px;
 }
 
-/* The Container */
 .glass-table-container {
-  background: white;
+  background: rgb(255, 253, 253);
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(61, 25, 91, 0.08);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: 0 auto;
 }
 
 .modern-table {
@@ -64,6 +64,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+
 }
 
 .col-team {
@@ -74,7 +75,7 @@
 /* Row Styling */
 .table-row {
   transition: all 0.2s ease;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 3px solid #f0f0f0;
 }
 
 .table-row:hover {
@@ -91,13 +92,13 @@
 .team-info {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding-left: 15px;
+  gap: 12px;
+  padding-left: 12px;
 }
 
 .club-icon {
-  width: 32px;
-  height: 32px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -157,10 +158,18 @@
   background: #ff005a;
 }
 
-/* Champions League Zone Indicator */
-.row-rank-1,
-.row-rank-2,
-.row-rank-3,
-.row-rank-4 {
-  border-left: 6px solid #00ff85;
+.table-row.ucl-zone {
+  border-left: 8px solid #00ff85; 
+}
+
+.table-row.relegation-zone {
+  border-left: 8px solid #ff3781; 
+}
+
+.table-row.europa-league-zone {
+  border-left: 8px solid #fd7d15; 
+}
+.table-row {
+  border-left: 8px solid transparent; 
+  transition: all 0.2s ease;
 }

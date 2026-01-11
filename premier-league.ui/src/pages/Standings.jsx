@@ -41,19 +41,24 @@ const Standings = () => {
               <th>L</th>
               <th>GD</th>
               <th className="col-pts">Pts</th>
-              <th className="col-form">Form</th>
             </tr>
           </thead>
           <tbody>
             {standings.map((club) => (
-              <tr key={club.team.id} className="table-row">
+              <tr
+                key={club.team.id}
+                className={`table-row 
+    ${club.position <= 4 ? "ucl-zone" : ""} 
+    ${club.position >= 18 ? "relegation-zone" : ""}
+    ${club.position == 5 ? "europa-league-zone" : ""}`}
+              >
                 <td className="rank-cell">
                   <span className="rank-number">{club.position}</span>
                 </td>
                 <td className="team-cell">
                   <div className="team-info">
                     <img
-                      src={club.team.crest} // FIXED: Added .team
+                      src={club.team.crest} 
                       alt={club.team.name}
                       className="club-icon"
                     />
@@ -72,16 +77,6 @@ const Standings = () => {
                     : club.goalDifference}
                 </td>
                 <td className="pts-cell">{club.points}</td>
-                <td className="form-cell">
-                  <div className="form-indicator-group">
-                    {/* FIXED: Convert "W,D,L" string to array before mapping */}
-                    {club.form?.split(",").map((res, i) => (
-                      <span key={i} className={`form-dot ${res.toLowerCase()}`}>
-                        {res}
-                      </span>
-                    ))}
-                  </div>
-                </td>
               </tr>
             ))}
           </tbody>
